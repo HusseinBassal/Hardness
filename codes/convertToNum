@@ -1,0 +1,24 @@
+import numpy as np
+
+# Read each column from the LVM file
+mainFile = "C:\\Users\\Hussein.Bassal\\Downloads\\Empty\Empty\\freq 0.3\\T7sec_t1.lvm"
+
+# Specify the full path where you want to save the output file
+output_path = "C:\\Users\\Hussein.Bassal\\Desktop\\trial 2\\outputfile.npy"
+
+column_data = []
+with open(mainFile, "r") as f:
+    for line in f:
+        if line.startswith("Ch"):
+            continue
+        # Assuming columns are separated by whitespace
+        columns = line.split()
+        # Convert each column to float and store them
+        column_data.append([float(col) for col in columns])
+
+# Convert list of lists to NumPy array
+numpy_array = np.array(column_data)
+
+np.save(output_path, numpy_array)
+
+
